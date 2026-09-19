@@ -28,7 +28,7 @@ const config: Config = {
           200: '#FAE8B4',
           300: '#F5D785',
           400: '#EFC052',
-          500: '#E5A93C', // Golden Acacia / African Sunlight
+          500: '#E5A93C', // Golden Acacia / African Sunlight-
           600: '#C8871E',
           700: '#9F6317',
           800: '#7B4C16',
