@@ -1,7 +1,4 @@
-# ==============================================================================
 # Nairobi — Trusted AFCON Information (.gitignore)
-# Clean, production-ready repository configuration for Next.js & GitHub
-# ==============================================================================
 
 # 1. Dependencies
 node_modules/
