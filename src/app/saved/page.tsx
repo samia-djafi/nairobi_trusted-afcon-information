@@ -9,16 +9,24 @@ import { useApp } from '@/context/AppContext';
 import {
   Bookmark,
   Trash2,
-  ExternalLink,
-  Search,
-  Compass,
   ArrowRight,
-  ShieldCheck,
-  Building2
+  Wifi,
+  WifiOff,
+  RefreshCw,
+  Database,
+  CheckCircle2,
 } from 'lucide-react';
 
 export default function SavedPage() {
-  const { refreshSavedCount } = useApp();
+  const {
+    refreshSavedCount,
+    isOnline,
+    isSyncing,
+    pendingSyncCount,
+    lastSyncTimestamp,
+    triggerSync,
+  } = useApp();
+
   const [savedItems, setSavedItems] = useState<SavedItem[]>([]);
   const [activeFilter, setActiveFilter] = useState<'all' | 'answer' | 'explanation'>('all');
 
@@ -40,26 +48,61 @@ export default function SavedPage() {
     refreshSavedCount();
   };
 
-  const filteredItems = savedItems.filter(item => {
+  const filteredItems = savedItems.filter((item) => {
     if (activeFilter === 'all') return true;
     return item.type === activeFilter;
   });
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8">
-      
-      {/* Page Header */}
+      {/* Page Header & Connectivity / Sync Status */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-savannah-200 pb-6">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-earth-50 border border-earth-200 text-earth-800 text-xs font-bold mb-2">
-            <Bookmark className="w-3.5 h-3.5 text-earth-600 fill-earth-600" />
-            <span>Device Storage • Works Offline</span>
+          {/* Status Badges */}
+          <div className="flex flex-wrap items-center gap-2 mb-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-earth-50 border border-earth-200 text-earth-800 text-xs font-bold">
+              <Database className="w-3.5 h-3.5 text-earth-600" />
+              <span>Dexie.js IndexedDB Architecture</span>
+            </div>
+
+            <div
+              className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border ${
+                isOnline
+                  ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                  : 'bg-amber-50 text-amber-800 border-amber-200'
+              }`}
+            >
+              {isOnline ? (
+                <>
+                  <Wifi className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>Online & Cloud-Synced</span>
+                </>
+              ) : (
+                <>
+                  <WifiOff className="w-3.5 h-3.5 text-amber-600" />
+                  <span>Offline Mode • Stored Locally</span>
+                </>
+              )}
+            </div>
+
+            {pendingSyncCount > 0 && (
+              <button
+                type="button"
+                onClick={triggerSync}
+                disabled={isSyncing || !isOnline}
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-50 text-sky-800 border border-sky-200 text-xs font-bold hover:bg-sky-100 transition-colors disabled:opacity-50"
+              >
+                <RefreshCw className={`w-3 h-3 ${isSyncing ? 'animate-spin' : ''}`} />
+                <span>{pendingSyncCount} Pending Sync{pendingSyncCount !== 1 ? 's' : ''} (Sync Now)</span>
+              </button>
+            )}
           </div>
+
           <h1 className="text-3xl sm:text-4xl font-extrabold text-obsidian tracking-tight">
             Saved Information & Answers
           </h1>
           <p className="text-sm text-savannah-700 mt-1">
-            Access your bookmarked transit routes, stadium rules, and emergency guidelines anytime without re-searching.
+            Access bookmarked transit routes, stadium rules, and verified AI answers even with zero internet connectivity.
           </p>
         </div>
 
@@ -91,7 +134,7 @@ export default function SavedPage() {
                 : 'bg-white border border-savannah-300 text-savannah-700 hover:bg-savannah-100'
             }`}
           >
-            Answers ({savedItems.filter(i => i.type === 'answer').length})
+            Answers ({savedItems.filter((i) => i.type === 'answer').length})
           </button>
           <button
             onClick={() => setActiveFilter('explanation')}
@@ -101,7 +144,7 @@ export default function SavedPage() {
                 : 'bg-white border border-savannah-300 text-savannah-700 hover:bg-savannah-100'
             }`}
           >
-            Official Notices ({savedItems.filter(i => i.type === 'explanation').length})
+            Official Notices ({savedItems.filter((i) => i.type === 'explanation').length})
           </button>
         </div>
       )}
@@ -161,7 +204,7 @@ export default function SavedPage() {
             You haven&apos;t saved anything yet.
           </h2>
           <p className="text-xs sm:text-sm text-savannah-700 leading-relaxed">
-            Click the &ldquo;Save&rdquo; bookmark button on any verified answer, transport advisory, or explained notice to keep it here for quick offline access.
+            Bookmark any verified answer, transit advisory, or explained notice to preserve it locally in IndexedDB for 100% offline access.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
             <Link
@@ -179,7 +222,6 @@ export default function SavedPage() {
           </div>
         </div>
       )}
-
     </div>
   );
 }
