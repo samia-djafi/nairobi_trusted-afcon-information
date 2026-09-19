@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Language, AFCONInfoItem, NotificationAlert } from '@/types';
 import { getStoredLanguage, setStoredLanguage, getSavedItems } from '@/lib/storage';
 import { RECENT_NOTIFICATIONS } from '@/lib/knowledge-base';
+import { syncEngine, SyncEngineState } from '@/lib/sync-engine';
 
 interface AppContextType {
   language: Language;
@@ -22,6 +23,12 @@ interface AppContextType {
   setIsLowBandwidthMode: (low: boolean) => void;
   isSafetyBannerDismissed: boolean;
   dismissSafetyBanner: () => void;
+  // Offline-First Sync state
+  isOnline: boolean;
+  isSyncing: boolean;
+  pendingSyncCount: number;
+  lastSyncTimestamp: string | null;
+  triggerSync: () => Promise<void>;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -34,6 +41,15 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [isNotificationDrawerOpen, setIsNotificationDrawerOpen] = useState(false);
   const [isLowBandwidthMode, setIsLowBandwidthMode] = useState(false);
   const [isSafetyBannerDismissed, setIsSafetyBannerDismissed] = useState(false);
+
+  // Sync state
+  const [syncState, setSyncState] = useState<SyncEngineState>({
+    isOnline: typeof navigator !== 'undefined' ? navigator.onLine : true,
+    isSyncing: false,
+    pendingCount: 0,
+    lastSyncTimestamp: null,
+    lastError: null,
+  });
 
   useEffect(() => {
     setLangState(getStoredLanguage());
@@ -50,6 +66,11 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     window.addEventListener('storage-saved-updated', handleSavedUpdate);
     window.addEventListener('language-changed', handleLangChange);
 
+    // Subscribe to SyncEngine
+    const unbindSync = syncEngine.subscribe((state) => {
+      setSyncState({ ...state });
+    });
+
     // Check for prefers-reduced-data or slow connection
     if (typeof navigator !== 'undefined' && 'connection' in navigator) {
       const conn = (navigator as unknown as { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
@@ -61,6 +82,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     return () => {
       window.removeEventListener('storage-saved-updated', handleSavedUpdate);
       window.removeEventListener('language-changed', handleLangChange);
+      unbindSync();
     };
   }, []);
 
@@ -91,6 +113,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     setIsSafetyBannerDismissed(true);
   };
 
+  const triggerSync = async () => {
+    await syncEngine.flushQueue();
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -110,6 +136,11 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         setIsLowBandwidthMode,
         isSafetyBannerDismissed,
         dismissSafetyBanner,
+        isOnline: syncState.isOnline,
+        isSyncing: syncState.isSyncing,
+        pendingSyncCount: syncState.pendingCount,
+        lastSyncTimestamp: syncState.lastSyncTimestamp,
+        triggerSync,
       }}
     >
       {children}
