@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useApp } from '@/context/AppContext';
 import { TRANSLATIONS } from '@/lib/translations';
-import AfricanSportsMonument from '@/components/3d/AfricanSportsMonument';
+import NairobiMonumentLoop from '@/components/3d/NairobiMonumentLoop';
 import VerificationBadge from '@/components/trust/VerificationBadge';
 import { 
   AFCON_KNOWLEDGE_BASE, 
@@ -181,7 +181,7 @@ export default function HomePage() {
             {/* Right Column: 3D Living African Sports Monument */}
             <div className="lg:col-span-5 flex items-center justify-center">
               <div className="w-full max-w-lg bg-gradient-to-b from-white to-savannah-100 rounded-3xl border border-savannah-300 p-2 sm:p-4 shadow-african-elevated relative">
-                <AfricanSportsMonument />
+              <NairobiMonumentLoop />
               </div>
             </div>
           </div>
