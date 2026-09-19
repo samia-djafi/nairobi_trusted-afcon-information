@@ -9,6 +9,7 @@ import FloatingReportButton from '@/components/layout/FloatingReportButton';
 import NotificationDrawer from '@/components/layout/NotificationDrawer';
 import SourceExplorerModal from '@/components/trust/SourceExplorerModal';
 import ServiceWorkerRegister from '@/components/pwa/ServiceWorkerRegister';
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
   title: 'Nairobi - Trusted AFCON 2027 Information',
