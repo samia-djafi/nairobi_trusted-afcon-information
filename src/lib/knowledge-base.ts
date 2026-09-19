@@ -1,4 +1,4 @@
-import { AFCONInfoItem, NotificationAlert } from '@/types';
+import { AFCONInfoItem, NotificationAlert, Language, Category } from '@/types';
 
 export const AFCON_KNOWLEDGE_BASE: AFCONInfoItem[] = [
   {
@@ -370,6 +370,62 @@ export const AFCON_KNOWLEDGE_BASE: AFCONInfoItem[] = [
   }
 ];
 
+// Swahili Localized Knowledge Base Dictionary
+const SW_KNOWLEDGE_OVERRIDE: Record<string, Partial<AFCONInfoItem>> = {
+  'talanta-road-closures': {
+    title: 'Je, barabara ya kuelekea Uwanja wa Talanta imefungwa siku za mechi?',
+    summary: 'Barabara ya Ngong inabaki wazi kwa magari ya kawaida, lakini njia za Jamhuri zinaruhusu tu mabasi rasmi ya AFCON na magari ya dharura.',
+    fullAnswer: 'Kulingana na Mamlaka ya Barabara za Kitaifa (KeNHA) na Kaunti ya Jiji la Nairobi, barabara ya Ngong itasimamiwa kwa njia maalum siku za mechi katika Uwanja wa Talanta. Magari ya kibinafsi yasiyo na vibali vya maegesho ya VIP yataelekezwa njia nyingine katika makutano ya Adams Arcade na Dagoretti Corner.',
+    statusReason: 'Ilani rasmi ya gazeti la serikali imethibitishwa kutoka Tangazo la KeNHA #2026/08.',
+  },
+  'free-public-transport': {
+    title: 'Je, usafiri wa umma ni bure siku za mechi za AFCON?',
+    summary: 'Usafiri wa matatu za kawaida si bure, lakini treni ya jiji (Nairobi Commuter Rail) na mabasi rasmi ya mashabiki wa AFCON ni 100% bure ukiwa na tiketi ya mechi.',
+    fullAnswer: 'Matatu za kawaida za kibinafsi zinatoza nauli za kawaida. Hata hivyo, Serikali ya Kenya kwa ushirikiano na Kamati ya Maandalizi ya AFCON inatoa usafiri wa bure kwenye Treni ya Jiji na mabasi rasmi ya umeme kati ya CBD na viwanja. Lazima uonyeshe tiketi halali ya mechi ya siku hiyo.',
+    statusReason: 'Taarifa ya pamoja imethibitishwa na Shirika la Reli la Kenya na Wizara ya Uchukuzi.',
+  },
+  'emergency-contacts-hotline': {
+    title: 'Nambari rasmi za dharura wakati wa AFCON 2027 Nairobi ni zipi?',
+    summary: 'Nambari kuu ya dharura ya kitaifa ni 999 au 112. Kwa huduma ya haraka ya matibabu, Msalaba Mwekundu Kenya una nambari ya bure 1199.',
+    fullAnswer: 'Kenya imeunganisha mifumo ya dharura kwa mashindano haya. Katika dharura yoyote ya maisha au usalama, piga 999 au 112 bure kutoka mtandao wowote wa simu. Kwa ambulensi ya moja kwa moja, piga Msalaba Mwekundu kwa 1199. Kwa watalii na mashabiki wa kimataifa, kitengo cha Polisi wa Kidiplomasia ni +254 20 2222181.',
+    statusReason: 'Imethibitishwa moja kwa moja na Jeshi la Polisi na Kitengo cha Maafa cha Msalaba Mwekundu Kenya.',
+  },
+  'kasarani-gate-bag-policy': {
+    title: 'Je, ninaweza kuingia na chupa za maji, mikoba, au chaja za simu Uwanja wa Kasarani?',
+    summary: 'Mikoba mikubwa kuliko saizi ya A4 na vyombo vya chuma au kioo vimepigwa marufuku. Chupa za plastiki zilizofungwa (hadi 500ml) na chaja ndogo zinaruhusiwa.',
+    fullAnswer: 'Chini ya kanuni za CAF na Usalama wa Viwanja nchini Kenya, wahudhuriaji wote wanapaswa kupitia mashine za ukaguzi kwenye milango ya Kasarani. Vitu vinavyoruhusiwa: Mikoba midogo, chaja ndogo za simu chini ya 20,000 mAh, na chupa za maji za plastiki za 500ml.',
+    statusReason: 'Imeboreshwa kulingana na Mwongozo wa Usalama wa Mashindano ya CAF Kifungu cha 14.',
+  },
+};
+
+// French Localized Knowledge Base Dictionary
+const FR_KNOWLEDGE_OVERRIDE: Record<string, Partial<AFCONInfoItem>> = {
+  'talanta-road-closures': {
+    title: 'La route vers le stade Talanta est-elle fermée les jours de match ?',
+    summary: 'Ngong Road reste ouverte à la circulation normale, mais les boucles directes de Jamhuri sont réservées aux navettes officielles et aux véhicules d’urgence.',
+    fullAnswer: 'Selon la KeNHA et le Comté de Nairobi, Ngong Road fera l’objet de régulations spéciales les jours de match au stade Talanta. Les véhicules particuliers sans laissez-passer VIP ou PMR sont déviés aux carrefours d’Adams Arcade et Dagoretti Corner.',
+    statusReason: 'Avis officiel vérifié auprès de l’avis de transit KeNHA n° 2026/08.',
+  },
+  'free-public-transport': {
+    title: 'Les transports publics sont-ils gratuits les jours de match de la CAN ?',
+    summary: 'Les matatus standards restent payants, mais le train urbain et les navettes officielles CAN sont 100% gratuits sur présentation du billet de match.',
+    fullAnswer: 'Les matatus privés appliquent leurs tarifs normaux. En revanche, le Gouvernement du Kenya et le Comité d’Organisation assurent la gratuité sur le train urbain de Nairobi et sur les navettes électriques reliant le centre-ville aux stades pour les détenteurs de billets.',
+    statusReason: 'Communiqué de presse conjoint confirmé par Kenya Railways et le Ministère des Transports.',
+  },
+  'emergency-contacts-hotline': {
+    title: 'Quels sont les numéros d’urgence officiels pendant la CAN 2027 à Nairobi ?',
+    summary: 'Le numéro national d’urgence est le 999 ou le 112. Pour les urgences médicales et ambulances, la Croix-Rouge dispose du 1199 (gratuit).',
+    fullAnswer: 'Le Kenya a centralisé les secours pour la compétition. En cas de menace vitale ou d’urgence sécuritaire, composez le 999 ou le 112 depuis n’importe quel opérateur. Pour une ambulance rapide, appelez la Croix-Rouge au 1199.',
+    statusReason: 'Vérifié auprès de la Police Nationale et de la Croix-Rouge du Kenya.',
+  },
+  'kasarani-gate-bag-policy': {
+    title: 'Peut-on apporter des bouteilles d’eau, des sacs ou des batteries externes à Kasarani ?',
+    summary: 'Les sacs dépassant le format A4 et les contenants en verre ou métal sont strictement interdits. Les bouteilles en plastique scellées (500 ml max) sont autorisées.',
+    fullAnswer: 'Conformément aux règlements de la CAF et de la sécurité des stades kényans, tous les spectateurs passent par des scanners de sécurité. Articles autorisés : petits sacs transparents, petites batteries externes (< 20 000 mAh) et bouteilles d’eau plastique scellées.',
+    statusReason: 'Mis à jour selon le Manuel de Sécurité des Tournois CAF, Article 14.',
+  },
+};
+
 export const RECENT_NOTIFICATIONS: NotificationAlert[] = [
   {
     id: 'notif-1',
@@ -470,3 +526,221 @@ export const TRUSTED_INSTITUTIONS = [
   { name: 'Kenya Railways Corporation', acronym: 'KRC', role: 'Commuter Train Match Shuttles', verifiedCount: 9 },
   { name: 'National Transport and Safety Authority', acronym: 'NTSA', role: 'Public Service Vehicle Regulation', verifiedCount: 12 }
 ];
+
+/**
+ * Returns the knowledge base localized into the user's selected language
+ */
+export function getLocalizedKnowledgeBase(lang: Language = 'en'): AFCONInfoItem[] {
+  if (lang === 'en') return AFCON_KNOWLEDGE_BASE;
+
+  const overrides = lang === 'sw' ? SW_KNOWLEDGE_OVERRIDE : FR_KNOWLEDGE_OVERRIDE;
+  return AFCON_KNOWLEDGE_BASE.map((item) => {
+    const override = overrides[item.id];
+    if (!override) return item;
+    return {
+      ...item,
+      ...override,
+    };
+  });
+}
+
+/**
+ * Returns localized notifications
+ */
+export function getLocalizedNotifications(lang: Language = 'en'): NotificationAlert[] {
+  if (lang === 'en') return RECENT_NOTIFICATIONS;
+
+  if (lang === 'sw') {
+    return [
+      {
+        id: 'notif-1',
+        title: 'Talanta Sports City: Mabadiliko ya Barabara ya Ngong Yanaanza Leo',
+        summary: 'Udhibiti wa njia unaanza saa 5:00 asubuhi. Tumia maegesho ya Carnivore Park-and-Ride.',
+        category: 'transport',
+        institution: 'Mamlaka ya Barabara Kuu (KeNHA)',
+        timestamp: 'Masaa 2 yaliyopita',
+        status: 'verified',
+        targetId: 'talanta-road-closures',
+        isEmergency: false,
+        read: false
+      },
+      {
+        id: 'notif-2',
+        title: 'Tahadhari ya Usalama: Mabadiliko ya Lango D Kasarani',
+        summary: 'Mashine za lango D zimeboreshwa. Wenye tiketi za Sehemu ya 4 wanaweza kutumia Lango C pia.',
+        category: 'venues',
+        institution: 'Sports Kenya & CAF',
+        timestamp: 'Masaa 4 yaliyopita',
+        status: 'recently_updated',
+        targetId: 'kasarani-gate-bag-policy',
+        isEmergency: false,
+        read: false
+      },
+      {
+        id: 'notif-3',
+        title: 'Treni Maalum ya Mashabiki Imethibitishwa kwa Mechi ya Kenya dhidi ya Ivory Coast',
+        summary: 'Treni zitaondoka Nairobi Central kila baada ya dakika 15 kuanzia saa 7:00 mchana bure kwa wenye tiketi.',
+        category: 'transport',
+        institution: 'Shirika la Reli la Kenya',
+        timestamp: 'Masaa 7 yaliyopita',
+        status: 'verified',
+        targetId: 'free-public-transport',
+        isEmergency: false,
+        read: false
+      },
+      {
+        id: 'notif-4',
+        title: 'Ushauri wa Afya: Chanjo ya Homa ya Manjano Bure Uwanja wa Ndege wa JKIA',
+        summary: 'Mashabiki wa kimataifa waliokosa chanjo nchini mwao wanaweza kuchanjwa rasmi wanapowasili.',
+        category: 'public_services',
+        institution: 'Wizara ya Afya Kenya',
+        timestamp: 'Siku 1 iliyopita',
+        status: 'verified',
+        targetId: 'health-entry-requirements',
+        isEmergency: false,
+        read: true
+      }
+    ];
+  }
+
+  // French
+  return [
+    {
+      id: 'notif-1',
+      title: 'Stade Talanta : Déviations Actives sur Ngong Road Aujourd’hui',
+      summary: 'Voies régulées dès 11h00. Utilisez les navettes relais depuis le parking du Carnivore.',
+      category: 'transport',
+      institution: 'Autorité des Autoroutes du Kenya (KeNHA)',
+      timestamp: 'Il y a 2 heures',
+      status: 'verified',
+      targetId: 'talanta-road-closures',
+      isEmergency: false,
+      read: false
+    },
+    {
+      id: 'notif-2',
+      title: 'Alerte Sécurité : Mise à Jour des Tourniquets Porte D à Kasarani',
+      summary: 'Scanners de la porte D modernisés. Les détenteurs de billets Section 4 peuvent aussi entrer par la porte C.',
+      category: 'venues',
+      institution: 'Sports Kenya & CAF',
+      timestamp: 'Il y a 4 heures',
+      status: 'recently_updated',
+      targetId: 'kasarani-gate-bag-policy',
+      isEmergency: false,
+      read: false
+    },
+    {
+      id: 'notif-3',
+      title: 'Train Spécial Supporters Confirmé pour Kenya vs Côte d’Ivoire',
+      summary: 'Départs toutes les 15 minutes depuis Nairobi Central dès 13h00, gratuit sur présentation du billet.',
+      category: 'transport',
+      institution: 'Société des Chemins de Fer du Kenya',
+      timestamp: 'Il y a 7 heures',
+      status: 'verified',
+      targetId: 'free-public-transport',
+      isEmergency: false,
+      read: false
+    },
+    {
+      id: 'notif-4',
+      title: 'Avis Sanitaire : Vaccin Fièvre Jaune Disponible à l’Aéroport JKIA',
+      summary: 'Les supporters internationaux n’ayant pas reçu le vaccin dans leur pays peuvent se faire vacciner à l’arrivée.',
+      category: 'public_services',
+      institution: 'Ministère de la Santé du Kenya',
+      timestamp: 'Il y a 1 jour',
+      status: 'verified',
+      targetId: 'health-entry-requirements',
+      isEmergency: false,
+      read: true
+    }
+  ];
+}
+
+/**
+ * Returns localized categories
+ */
+export function getLocalizedCategories(lang: Language = 'en') {
+  if (lang === 'sw') {
+    return [
+      {
+        id: 'transport' as const,
+        title: 'Usafiri na Uhamaji',
+        shortTitle: 'Usafiri',
+        icon: 'Car',
+        description: 'Mabasi ya barabara kuu, matatu za SACCO, treni ya jiji, mabadiliko ya njia na maegesho.',
+        count: 4,
+        color: 'earth'
+      },
+      {
+        id: 'venues' as const,
+        title: 'Taarifa za Viwanja',
+        shortTitle: 'Viwanja',
+        icon: 'Stadium',
+        description: 'Viwanja vya Talanta, Kasarani, Nyayo, milango, sera ya mikoba, tiketi na urahisi wa kuingia.',
+        count: 3,
+        color: 'sun'
+      },
+      {
+        id: 'safety' as const,
+        title: 'Usalama na Msaada',
+        shortTitle: 'Usalama',
+        icon: 'ShieldAlert',
+        description: 'Nambari za dharura (999, 112, 1199), zahanati, vitu vilivyopotea, ulinzi wa watalii na vituo vya polisi.',
+        count: 3,
+        color: 'ember'
+      },
+      {
+        id: 'public_services' as const,
+        title: 'Huduma za Umma',
+        shortTitle: 'Huduma za Umma',
+        icon: 'Building2',
+        description: 'Maeneo ya sherehe ya mashabiki Uhuru Park, viza ya mtandaoni, miongozo ya chanjo na maji safi.',
+        count: 2,
+        color: 'rift'
+      }
+    ];
+  }
+
+  if (lang === 'fr') {
+    return [
+      {
+        id: 'transport' as const,
+        title: 'Transports & Mobilité',
+        shortTitle: 'Transports',
+        icon: 'Car',
+        description: 'Navettes de la voie rapide, coopératives de matatus, train urbain, déviations et parkings relais.',
+        count: 4,
+        color: 'earth'
+      },
+      {
+        id: 'venues' as const,
+        title: 'Informations des Stades',
+        shortTitle: 'Stades',
+        icon: 'Stadium',
+        description: 'Stades Talanta, Kasarani, Nyayo, portes d’accès, règles relatives aux sacs, billetterie et accessibilité.',
+        count: 3,
+        color: 'sun'
+      },
+      {
+        id: 'safety' as const,
+        title: 'Sécurité & Secours',
+        shortTitle: 'Sécurité',
+        icon: 'ShieldAlert',
+        description: 'Lignes d’urgence (999, 112, 1199), postes médicaux, objets trouvés, protection des touristes et police.',
+        count: 3,
+        color: 'ember'
+      },
+      {
+        id: 'public_services' as const,
+        title: 'Services Publics',
+        shortTitle: 'Services Publics',
+        icon: 'Building2',
+        description: 'Festivals de supporters à Uhuru Park, visa électronique, exigences vaccinales et points d’eau potable.',
+        count: 2,
+        color: 'rift'
+      }
+    ];
+  }
+
+  return CATEGORIES_CONFIG;
+}
