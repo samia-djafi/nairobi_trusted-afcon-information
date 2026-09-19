@@ -42,6 +42,8 @@ export default function Navbar() {
   const [nairobiTime, setNairobiTime] = useState<string>('');
 
   const t = TRANSLATIONS[language]?.nav || TRANSLATIONS.en.nav;
+  const brand = TRANSLATIONS[language]?.brandName || TRANSLATIONS.en.brandName;
+  const tagline = TRANSLATIONS[language]?.brandTagline || TRANSLATIONS.en.brandTagline;
 
   // Live Nairobi East Africa Time (UTC+3)
   useEffect(() => {
@@ -88,12 +90,15 @@ export default function Navbar() {
               href="/" 
               className="flex items-center gap-2.5 group focus:outline-none"
             >
-              {/* Stylized African Shield & Ball Geometric Symbol */}
-              <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-earth-600 via-ember-600 to-sun-500 p-0.5 shadow-md shadow-earth-500/20 group-hover:scale-105 transition-transform">
-                <div className="w-full h-full bg-obsidian rounded-[10px] flex items-center justify-center overflow-hidden">
-                  <span className="font-extrabold text-sun-400 text-base tracking-tighter">NBO</span>
-                  {/* Subtle decorative inner corner */}
-                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-earth-500 rotate-45" />
+              {/* Official AFCON 2027 Logo */}
+              <div className="relative w-11 h-11 rounded-xl overflow-hidden bg-gradient-to-br from-earth-600 via-ember-600 to-sun-500 p-0.5 shadow-md shadow-earth-500/20 group-hover:scale-105 transition-transform">
+                <div className="w-full h-full rounded-[10px] overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/afcon-logo.jpg"
+                    alt={brand}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
 
@@ -107,7 +112,7 @@ export default function Navbar() {
                   </span>
                 </div>
                 <span className="text-[11px] text-savannah-600 font-medium tracking-tight -mt-0.5 hidden sm:inline">
-                  Trusted Civic Information
+                  {tagline}
                 </span>
               </div>
             </Link>
@@ -164,8 +169,8 @@ export default function Navbar() {
                         <Car className="w-4 h-4" />
                       </div>
                       <div>
-                        <span className="font-bold block">Transport & Mobility</span>
-                        <span className="text-savannah-600 text-[11px]">Expressway, rail, matatus</span>
+                        <span className="font-bold block">{t.dropdown.transportTitle}</span>
+                        <span className="text-savannah-600 text-[11px]">{t.dropdown.transportDesc}</span>
                       </div>
                     </Link>
 
@@ -177,8 +182,8 @@ export default function Navbar() {
                         <Trophy className="w-4 h-4" />
                       </div>
                       <div>
-                        <span className="font-bold block">Venues & Stadiums</span>
-                        <span className="text-savannah-600 text-[11px]">Talanta, Kasarani, Nyayo</span>
+                        <span className="font-bold block">{t.dropdown.venuesTitle}</span>
+                        <span className="text-savannah-600 text-[11px]">{t.dropdown.venuesDesc}</span>
                       </div>
                     </Link>
 
@@ -190,8 +195,8 @@ export default function Navbar() {
                         <ShieldAlert className="w-4 h-4" />
                       </div>
                       <div>
-                        <span className="font-bold block">Safety & Assistance</span>
-                        <span className="text-savannah-600 text-[11px]">Emergency dispatch, medical</span>
+                        <span className="font-bold block">{t.dropdown.safetyTitle}</span>
+                        <span className="text-savannah-600 text-[11px]">{t.dropdown.safetyDesc}</span>
                       </div>
                     </Link>
 
@@ -203,8 +208,8 @@ export default function Navbar() {
                         <Building2 className="w-4 h-4" />
                       </div>
                       <div>
-                        <span className="font-bold block">Public Services</span>
-                        <span className="text-savannah-600 text-[11px]">Fan festivals, health, e-visa</span>
+                        <span className="font-bold block">{t.dropdown.publicServicesTitle}</span>
+                        <span className="text-savannah-600 text-[11px]">{t.dropdown.publicServicesDesc}</span>
                       </div>
                     </Link>
                   </div>
@@ -261,7 +266,7 @@ export default function Navbar() {
                 type="button"
                 onClick={() => setIsLangOpen(!isLangOpen)}
                 className="p-2 rounded-lg text-savannah-800 hover:bg-savannah-100 transition-colors flex items-center gap-1 text-xs font-bold"
-                aria-label="Select language"
+                aria-label={t.selectLanguage}
               >
                 <Globe className="w-4 h-4 text-earth-600" />
                 <span className="uppercase">{language}</span>
@@ -299,7 +304,7 @@ export default function Navbar() {
               type="button"
               onClick={() => setIsNotificationDrawerOpen(true)}
               className="relative p-2 rounded-lg text-savannah-800 hover:bg-savannah-100 transition-colors"
-              aria-label="View notifications and safety updates"
+              aria-label={t.selectLanguage}
             >
               <Bell className="w-5 h-5 text-obsidian" />
               {unreadNotificationCount > 0 && (
@@ -324,8 +329,8 @@ export default function Navbar() {
                 type="button"
                 onClick={() => setIsAccountNoteOpen(!isAccountNoteOpen)}
                 className="p-2 rounded-full bg-savannah-100 hover:bg-savannah-200 text-savannah-800 transition-colors flex items-center justify-center border border-savannah-300"
-                aria-label="Account privacy status"
-                title="Privacy first: No account required"
+                aria-label={t.privacyTitle}
+                title={t.privacyTitle}
               >
                 <UserCheck className="w-4 h-4 text-rift-700" />
               </button>
@@ -337,13 +342,13 @@ export default function Navbar() {
                 >
                   <div className="flex items-center gap-2 mb-1.5 font-bold text-earth-700">
                     <UserCheck className="w-4 h-4 text-rift-600" />
-                    <span>Privacy-First Civic Session</span>
+                    <span>{t.privacyTitle}</span>
                   </div>
                   <p className="text-savannah-700 leading-relaxed">
                     {t.privacyNote}
                   </p>
                   <div className="mt-3 pt-2 border-t border-savannah-200 text-[11px] text-savannah-500">
-                    Anonymous session active • Device-only storage
+                    {t.privacySession}
                   </div>
                 </div>
               )}
