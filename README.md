@@ -36,7 +36,7 @@ Clicking any badge launches the **Source Explorer Modal**, exposing:
 - Official document reference & publication date
 - Step-by-step verification audit trail
 - Explicit **AI vs. Source** distinction notice
-- Direct link to official source portals
+- Direct link to offaicial source portals
 
 ---
 
