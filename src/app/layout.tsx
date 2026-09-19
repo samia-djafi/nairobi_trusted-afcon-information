@@ -78,6 +78,7 @@ export default function RootLayout({
           {/* Progressive Web App & Offline Sync Engine */}
           <ServiceWorkerRegister />
         </AppProvider>
+        <Analytics />
       </body>
     </html>
   );
