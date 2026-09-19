@@ -1,4 +1,4 @@
-import { OfficialAnnouncement } from '@/types';
+import { OfficialAnnouncement, Language } from '@/types';
 
 export const OFFICIAL_ANNOUNCEMENTS: OfficialAnnouncement[] = [
   {
@@ -72,3 +72,138 @@ export const OFFICIAL_ANNOUNCEMENTS: OfficialAnnouncement[] = [
     requiredAction: 'Arrive at least 2 hours before kickoff, bring your original ID, leave big bags at home, and bring only transparent personal pouches.',
   }
 ];
+
+export function getLocalizedAnnouncements(lang: Language = 'en'): OfficialAnnouncement[] {
+  if (lang === 'en') return OFFICIAL_ANNOUNCEMENTS;
+
+  if (lang === 'sw') {
+    return [
+      {
+        id: 'announcement-transit-reroute',
+        title: 'Gazeti la Kaunti ya Nairobi #104/2026: Mabadiliko ya Vituo vya Matatu Wakati wa Mechi za AFCON',
+        institution: 'Kaunti ya Jiji la Nairobi na Makao Makuu ya Polisi wa Trafiki',
+        date: '14 Sep 2026',
+        category: 'transport',
+        status: 'verified',
+        sourceUrl: 'https://nairobi.go.ke/gazette/2026-104-transport-reroute',
+        originalText: OFFICIAL_ANNOUNCEMENTS[0].originalText,
+        plainExplanation: 'Siku za mechi, matatu za kawaida zinazoshusha abiria Kencom na Ambassador katikati ya jiji zinahamishiwa Kituo cha Green Park na Uwanja wa Railways Club. Hii inatoa nafasi kwa njia salama za kutembea na mabasi rasmi ya mashabiki.',
+        keyPoints: [
+          'Mabasi ya kawaida na matatu HAWATASHUSHA abiria Kencom au Ambassador siku za mechi kuanzia saa 5:00 asubuhi hadi 5:00 usiku.',
+          'Abiria wanapaswa kupanda na kushuka katika Kituo cha Green Park au Railways Club.',
+          'Mabasi rasmi pekee yenye vibali maalum yataruhusiwa kuingia katikati ya njia za viwanja.',
+          'Kuvuta na faini zitatumika kwa matatu yasiyotii maagizo.'
+        ],
+        whoIsAffected: 'Wasafiri wote wa kila siku, mashabiki, na wahudumu wa matatu wanaoingia katikati ya jiji la Nairobi.',
+        whenItApplies: 'Kila siku ya mechi kuanzia saa 5:00 asubuhi hadi saa 5:00 usiku.',
+        requiredAction: 'Panga safari yako kupitia Green Park au Stesheni ya Reli badala ya Kencom, au tumia mabasi ya bure ya mashabiki wa mashindano.'
+      },
+      {
+        id: 'announcement-moh-health-protocol',
+        title: 'Agizo la Wizara ya Afya #44/2026: Mwongozo wa Ukaguzi wa Afya na Chanjo Mpakani kwa AFCON',
+        institution: 'Wizara ya Afya Kenya (Kitengo cha Afya Mpakani)',
+        date: '08 Sep 2026',
+        category: 'public_services',
+        status: 'verified',
+        sourceUrl: 'https://health.go.ke/directives/afcon-border-health-44',
+        originalText: OFFICIAL_ANNOUNCEMENTS[1].originalText,
+        plainExplanation: 'Ikiwa unakuja nchini Kenya kutoka nchi yenye hatari ya homa ya manjano, lazima uwe na kadi yako ya chanjo. Lazima pia ujaze fomu ya mtandaoni ya Jitenge kabla ya ndege. Ikiwa umesahau chanjo, unaweza kuchanjwa papo hapo uwanja wa ndege wa JKIA kwa $15.',
+        keyPoints: [
+          'Cheti cha homa ya manjano ni lazima kwa wanaosafiri kutoka maeneo yenye hatari (kichukuliwe angalau siku 10 kabla).',
+          'Kila mtu anayesafiri kwa ndege lazima ajaze fomu ya mtandaoni ya Jitenge AFCON kabla ya kupanda ndege.',
+          'Hakuna mahitaji ya vipimo vya PCR vya COVID-19 wala karantini.',
+          'Chanjo za dharura za homa ya manjano zinapatikana masaa 24 JKIA Terminal 1A kwa $15.'
+        ],
+        whoIsAffected: 'Wageni wote wa kimataifa, mashabiki wa mpira, wanahabari, na wakazi wanaorejea nchini kwa ajili ya AFCON.',
+        whenItApplies: 'Mara moja, masaa 24 katika vituo vyote vya kuingilia nchini Kenya.',
+        requiredAction: 'Jaza fomu ya Jitenge mtandaoni kwenye jitenge.health.go.ke ndani ya siku 3 kabla ya ndege na weka kadi ya chanjo pamoja na pasipoti.'
+      },
+      {
+        id: 'announcement-talanta-gate-rules',
+        title: 'Ilani ya Sports Kenya na CAF #18: Sheria za Kuingia Uwanja wa Talanta na Vitu Vilivyopigwa Marufuku',
+        institution: 'Sports Kenya na Kamati ya Usalama ya CAF',
+        date: '11 Sep 2026',
+        category: 'venues',
+        status: 'verified',
+        sourceUrl: 'https://sportskenya.org/talanta-safety-announcement-18',
+        originalText: OFFICIAL_ANNOUNCEMENTS[2].originalText,
+        plainExplanation: 'Milango katika Uwanja wa Talanta inafunguliwa masaa 5 kabla ya mechi na kufungwa dakika 45 kabla ya kuanza. Mikoba mikubwa, chupa za kioo, miavuli ya chuma, na leza zimepigwa marufuku. Mikoba midogo na vuvuzela za plastiki zinaruhusiwa.',
+        keyPoints: [
+          'Milango inafunguliwa masaa 5 kabla ya mechi; inafungwa dakika 45 kabla ya kuanza—usichelewe!',
+          'Hakuna kubeba mikoba mikubwa ya mgongoni; mikoba midogo wazi pekee ndiyo inayoruhusiwa.',
+          'Chupa za kioo, mikebe na miavuli yenye ncha kali haviruhusiwi.',
+          'Vuvuzela za plastiki chini ya 40cm zinaruhusiwa.',
+          'Kila mwenye tiketi lazima aonyeshe kitambulisho asili chenye picha kinachofanana na jina kwenye tiketi.'
+        ],
+        whoIsAffected: 'Wamiliki wote wa tiketi wanaohudhuria mechi katika Uwanja wa Talanta Sports City.',
+        whenItApplies: 'Siku zote za mechi katika Uwanja wa Talanta.',
+        requiredAction: 'Fika uwanjani angalau masaa 2 kabla ya mechi kuanza, beba kitambulisho asili, na acha mikoba mikubwa nyumbani.'
+      }
+    ];
+  }
+
+  // French
+  return [
+    {
+      id: 'announcement-transit-reroute',
+      title: 'Arrêté du Comté de Nairobi #104/2026 : Réacheminement des Terminus de Matatus du Centre-Ville',
+      institution: 'Gouvernement du Comté de Nairobi & Police de la Circulation',
+      date: '14 Sep 2026',
+      category: 'transport',
+      status: 'verified',
+      sourceUrl: 'https://nairobi.go.ke/gazette/2026-104-transport-reroute',
+      originalText: OFFICIAL_ANNOUNCEMENTS[0].originalText,
+      plainExplanation: 'Les jours de match, les matatus qui déposent habituellement les passagers à Kencom et Ambassador sont redirigés vers le terminus de Green Park et le Railways Club. Cela libère l’espace pour les couloirs piétons et les navettes officielles.',
+      keyPoints: [
+        'Les matatus ordinaires NE DÉPOSERONT PAS de passagers à Kencom ou Ambassador les jours de match de 11h00 à 23h00.',
+        'La montée et la descente des passagers s’effectuent obligatoirement à Green Park ou au Railways Club.',
+        'Seules les navettes officielles de la CAN munies de badges à code-barres peuvent pénétrer dans la boucle centrale.',
+        'Mise en fourrière et amendes strictes pour les véhicules non conformes.'
+      ],
+      whoIsAffected: 'Tous les usagers quotidiens, supporters et exploitants de matatus circulant vers le centre-ville de Nairobi.',
+      whenItApplies: 'Tous les jours de match de 11h00 à 23h00 pendant toute la durée de la compétition.',
+      requiredAction: 'Organisez votre trajet via Green Park ou la gare ferroviaire plutôt que Kencom, ou empruntez les navettes gratuites.'
+    },
+    {
+      id: 'announcement-moh-health-protocol',
+      title: 'Directive du Ministère de la Santé #44/2026 : Protocole Sanitaire et Vaccinal aux Frontières',
+      institution: 'Ministère de la Santé du Kenya (Direction Sanitaire Portuaire)',
+      date: '08 Sep 2026',
+      category: 'public_services',
+      status: 'verified',
+      sourceUrl: 'https://health.go.ke/directives/afcon-border-health-44',
+      originalText: OFFICIAL_ANNOUNCEMENTS[1].originalText,
+      plainExplanation: 'Si vous venez au Kenya depuis un pays à risque de fièvre jaune, votre carnet de vaccination est obligatoire. Vous devez aussi remplir en ligne la fiche sanitaire gratuite Jitenge. Si vous n’êtes pas vacciné, vous pouvez l’être directement à l’aéroport JKIA pour 15 $.',
+      keyPoints: [
+        'Le certificat de fièvre jaune est obligatoire pour les voyageurs provenant de zones d’endémie (vaccin fait au moins 10 jours avant).',
+        'Tous les passagers aériens doivent remplir le formulaire en ligne gratuit Jitenge AFCON avant l’embarquement.',
+        'Aucun test PCR COVID-19 ni quarantaine exigés.',
+        'Postes de vaccination d’urgence ouverts 24h/24 au Terminal 1A de JKIA au tarif subventionné de 15 $.'
+      ],
+      whoIsAffected: 'Tous les visiteurs internationaux, supporters, délégations de médias et résidents arrivant au Kenya pour la CAN.',
+      whenItApplies: 'Application immédiate, 24h/24 à tous les postes frontaliers pendant le tournoi.',
+      requiredAction: 'Remplissez le formulaire Jitenge sur jitenge.health.go.ke dans les 3 jours précédant votre vol et gardez votre carnet vaccinal avec votre passeport.'
+    },
+    {
+      id: 'announcement-talanta-gate-rules',
+      title: 'Avis Sports Kenya & CAF #18 : Règles d’Accès et Objets Interdits au Stade Talanta',
+      institution: 'Sports Kenya & Commission de Sécurité de la CAF',
+      date: '11 Sep 2026',
+      category: 'venues',
+      status: 'verified',
+      sourceUrl: 'https://sportskenya.org/talanta-safety-announcement-18',
+      originalText: OFFICIAL_ANNOUNCEMENTS[2].originalText,
+      plainExplanation: 'Les portes du stade Talanta ouvrent 5 heures avant le coup d’envoi et ferment 45 minutes avant le match. Les grands sacs à dos, bouteilles en verre, parapluies métalliques et pointeurs laser sont interdits. Les petits sacs transparents et les vuvuzelas en plastique sont autorisés.',
+      keyPoints: [
+        'Les portes ouvrent 5h avant le coup d’envoi et FERMENT 45 minutes avant—n’arrivez pas en retard !',
+        'Sacs à dos et grands sacs interdits ; seuls les petits sacs transparents ou pochettes sont admis.',
+        'Verre, canettes et parapluies pointus strictement interdits.',
+        'Vuvuzelas en plastique souple de moins de 40 cm autorisés.',
+        'Chaque détenteur de billet doit présenter une pièce d’identité officielle originale correspondant au nom figurant sur le billet.'
+      ],
+      whoIsAffected: 'Tous les spectateurs assistant aux matchs au stade Talanta Sports City.',
+      whenItApplies: 'Tous les jours de match au stade Talanta.',
+      requiredAction: 'Arrivez au moins 2 heures avant le coup d’envoi, munissez-vous de votre pièce d’identité originale et laissez les gros sacs chez vous.'
+    }
+  ];
+}
