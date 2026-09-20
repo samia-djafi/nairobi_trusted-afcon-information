@@ -269,7 +269,7 @@ vercel --prod
 
 ### 📊 Pitch Deck
 
-> 📑 **[View the pitch deck →]([https://your-pitch-deck-link-here](https://drive.google.com/file/d/1M7xtCrjFIdNjTtmqKhS_kP17CyWbklBq/view?usp=sharing))**
+> 📑 **[View the pitch deck →](https://drive.google.com/file/d/1M7xtCrjFIdNjTtmqKhS_kP17CyWbklBq/view?usp=sharing)**
 
 ---
 
