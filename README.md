@@ -265,7 +265,7 @@ vercel --prod
 
 ### 🎥 Demo Video
 
-> ▶️ **[Watch the full demo →](https://your-demo-video-link-here)**
+> ▶️ **[Watch the full demo →](https://drive.google.com/file/d/1ehxP0VYI4Y-Kt_v7JgVpZOA1DtK2tiZh/view?usp=drive_link)**
 
 ### 📊 Pitch Deck
 
