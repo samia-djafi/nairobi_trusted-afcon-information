@@ -3,12 +3,13 @@
 > **Verified, multilingual civic guidance for fans, residents, and visitors navigating AFCON 2027 in Nairobi — powered by AI grounded in official Kenyan public authority sources.**
 
 [![OSF × Andela Hackathon 2026](https://img.shields.io/badge/OSF_%C3%97_Andela-Build_for_Africa_2026-orange?style=flat-square)](https://andela.com)
+[![Track](https://img.shields.io/badge/Track-Transparency%2C_Accountability-blue?style=flat-square)]()
 [![Track](https://img.shields.io/badge/Track-Safety%2C_Reporting_%26_Protection-blue?style=flat-square)]()
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)](https://nextjs.org)
 [![Gemini AI](https://img.shields.io/badge/AI-Gemini_1.5_Flash-4285F4?style=flat-square&logo=google)](https://ai.google.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](./LICENSE)
 
----
+---  
 
 ## 📌 The Problem
 
