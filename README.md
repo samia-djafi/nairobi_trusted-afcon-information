@@ -42,9 +42,9 @@ For users with limited data, low-end devices, or low literacy in legalese, this 
 
 Most civic information platforms are either **news aggregators** (they scrape and republish without verification) or **government portals** (authoritative but inaccessible in format and language). Nairobi bridges that gap with an architecture that is rare in the African civic-tech space:
 
-**Every answer carries a verifiable paper trail.** Rather than asking an AI to "know" the answer, Nairobi uses a structured **Retrieval-Augmented Generation (RAG)** pipeline grounded exclusively in accredited Kenyan public authority documents — KeNHA transit advisories, National Police Service gazettes, CAF official notices, Kenya Red Cross protocols, and Nairobi City County bulletins. Each answer card displays the issuing institution, official document reference number, publication date, last-verification date, and a timestamped audit trail — not just a URL.
+**Every answer carries a verifiable paper trail.** Rather than asking an AI to "know" the answer, Nairobi uses a structured **Retrieval-Augmented Generation (RAG)** pipeline grounded exclusively in accredited Kenyan public authority documents - KeNHA transit advisories, National Police Service gazettes, CAF official notices, Kenya Red Cross protocols, and Nairobi City County bulletins. Each answer card displays the issuing institution, official document reference number, publication date, last-verification date, and a timestamped audit trail - not just a URL.
 
-Crucially, the platform distinguishes between **four trust states** (Verified ✅, Recently Updated 🕐, Unverified ⚠️, Could Not Verify ❌) surfaced through colour-coded badges and an expandable **Source Explorer Modal** — making the confidence level of every fact legible at a glance to any user, including those with limited civic literacy. This *trust infrastructure layer* is what no competitor has built at this granularity for an African tournament context.
+Crucially, the platform distinguishes between **four trust states** (Verified ✅, Recently Updated 🕐, Unverified ⚠️, Could Not Verify ❌) surfaced through colour-coded badges and an expandable **Source Explorer Modal** - making the confidence level of every fact legible at a glance to any user, including those with limited civic literacy. This *trust infrastructure layer* is what no competitor has built at this granularity for an African tournament context.
 
 ---
 
@@ -221,7 +221,7 @@ Every AI Answer Card displays a clear notice distinguishing what the AI generate
 
 - **Node.js** 18 or 20+ ([download](https://nodejs.org))
 - **npm** (comes with Node.js)
-- A **Google Gemini API key** — free tier available at [Google AI Studio](https://aistudio.google.com/app/apikey)
+- A **Google Gemini API key** - free tier available at [Google AI Studio](https://aistudio.google.com/app/apikey)
 
 ### 1. Clone the Repository
 
